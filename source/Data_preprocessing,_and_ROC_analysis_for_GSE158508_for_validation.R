@@ -29,6 +29,7 @@ library(ROCR)
 library(metaSeq)
 library(readxl)
 library(openxlsx)
+library(readr)
 
 # Load GSE158508 data ----
 load("dgeGenesEnsembl75.rdata")
@@ -52,7 +53,7 @@ ImPlatelet_samples=rbind(ImPlatelet_HC, ImPlatelet_OC)
 
 # Exclude Y-chromosome linked genes ----
 
-ImPlatelet_counts<-read.delim("ImPlatelet_counts_raw.tsv",sep="\t")
+ImPlatelet_counts <- read.delim(unz("ImPlatelet_counts_raw.zip", "ImPlatelet_counts_raw.tsv"), sep="\t")#Get working directory 
 
 Y_chr=filter(genes, genes$chromosome_name=='Y')
 Y_rows=rownames(Y_chr)
@@ -603,4 +604,5 @@ ggvenn(
 sessionInfo()
 
 #End of code
+
 
